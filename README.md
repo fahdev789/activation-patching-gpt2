@@ -4,10 +4,10 @@ A small mechanistic-interpretability notebook built with [TransformerLens](https
 
 ## What's in the notebook
 
-`notebooks/Activation_Patching_Layer_Specific.ipynb` uses the prompt **"My dog is a good"** on `gpt2-small` and covers:
+`notebooks/Activation_Patching_Layer_Specific.ipynb` compares a clean prompt (**"My dog is a good"**) against a corrupted prompt (**"My cat is a good"**) on `gpt2-small` and covers:
 
-1. **Clean / corrupted caches** – `run_with_cache` to record activations and the logit of a target token.
-2. **Layer-specific patching** – overwrite `blocks.3.hook_resid_pre` in a run with the cached activation from another run.
+1. **Clean / corrupted caches** – `run_with_cache` to record activations and the logit of a target token for each prompt.
+2. **Layer-specific patching** – overwrite `blocks.3.hook_resid_pre` in a run with the cached activation from the clean run.
 3. **Logit lens** – apply `ln_final` and `W_U` to intermediate residual streams to see what the model "would predict" at each layer (top-10 at layer 3, plus per-layer trajectories for chosen tokens).
 4. **Direct head attribution** – project each layer-10 head's output (`hook_z @ W_O`) onto the `' dog'` unembedding direction.
 
@@ -39,7 +39,7 @@ This visualizes how token representations evolve across layers and helps show wh
 
 ## Known limitations
 
-- **The simple demo in the notebook is only illustrative.** The actual patching comparison in the repo uses two different prompts, e.g. **clean:** `"My dog is a good"` vs **corrupted:** `"My cat is a good"`, so the effect is only meaningful when the inputs differ.
+- **The simple patching example can be a no-op if the clean and corrupted prompts are identical.** In the actual repo comparison, the prompts differ (for example, **clean:** `"My dog is a good"` vs **corrupted:** `"My cat is a good"`), so the effect is only meaningful when the inputs differ.
 - `src/patching_sweep.py` is a draft that does this properly, with a layer × position sweep. It has **not been run**; verify its output before drawing conclusions.
 - Head attribution is a direct-effect approximation; it ignores indirect effects through later layers and the layer-norm mean-centering.
 - Single prompt, single model: treat the numbers as an illustration, not a finding.
