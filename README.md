@@ -82,4 +82,4 @@ python src/patching_sweep.py --clean "My dog is a good" --corrupted "My cat is a
 
 ## License
 
-MIT – see [LICENSE](LICENSE). Replace `<YOUR NAME>` with your name.
+MIT — see [LICENSE](LICENSE).
