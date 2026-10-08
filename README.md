@@ -1,6 +1,6 @@
 # Activation Patching & Logit Lens on GPT-2 Small
 
-A small mechanistic-interpretability notebook built with [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens). It walks through caching activations, patching a layer's residual stream, reading the residual stream with the logit lens, and attributing a token's logit to individual attention heads.
+A small mechanistic-interpretability notebook built with [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens). It walks through caching activations, patching a layer's residual stream, and reading out intermediate token predictions.
 
 ## What's in the notebook
 
@@ -23,9 +23,23 @@ A small mechanistic-interpretability notebook built with [TransformerLens](https
 
 At layer 3 the top logit-lens tokens are things like `'enough'`, `' luck'` and `' friend'`; `' dog'` only becomes a top candidate in later layers.
 
+## Visuals
+
+<p align="center">
+  <img src="images/head-contribution.png" alt="Head contribution plot" width="800" />
+</p>
+
+This highlights the strongest head-level contribution to the target token logit, showing how specific heads push the model toward the `' dog'` prediction.
+
+<p align="center">
+  <img src="images/token-processings.png" alt="Token processing plot" width="800" />
+</p>
+
+This visualizes how token representations evolve across layers and helps show where the model starts favoring the correct final token.
+
 ## Known limitations
 
-- **The patching demo is a no-op.** The clean and corrupted prompts are both `"My dog is a good"`, so patching a layer from one run into the other changes nothing (the patched logit equals the clean logit, 14.10). The "corrupted" number in the notebook differs only because it reads the `' friend'` logit instead of `' dog'`. For a real patching experiment the two prompts must differ (e.g. `"My dog is a good"` vs `"My cat is a good"`).
+- **The patching demo is a no-op.** The clean and corrupted prompts are both `"My dog is a good"`, so patching a layer from one run into the other changes nothing (the patched logit equals the clean logit).
 - `src/patching_sweep.py` is a draft that does this properly, with a layer × position sweep. It has **not been run**; verify its output before drawing conclusions.
 - Head attribution is a direct-effect approximation; it ignores indirect effects through later layers and the layer-norm mean-centering.
 - Single prompt, single model: treat the numbers as an illustration, not a finding.
