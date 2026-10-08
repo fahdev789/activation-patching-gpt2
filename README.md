@@ -47,7 +47,7 @@ This visualizes how token representations evolve across layers and helps show wh
 ## Getting started
 
 ```bash
-git clone https://github.com/<your-username>/activation-patching-gpt2.git
+git clone https://github.com/fahdev789/activation-patching-gpt2.git
 cd activation-patching-gpt2
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
@@ -60,7 +60,7 @@ To try the sweep script:
 
 ```bash
 python src/patching_sweep.py --clean "My dog is a good" --corrupted "My cat is a good" \
-    --answer " dog" --wrong " cat"
+    --answer " dog" --wrong " catcher"
 ```
 
 ## Repo layout
