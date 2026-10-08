@@ -1,6 +1,6 @@
 # Activation Patching & Logit Lens on GPT-2 Small
 
-A small mechanistic-interpretability notebook built with [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens). It walks through caching activations, patching a layer's residual stream, and reading out intermediate token predictions.
+A small mechanistic-interpretability notebook built with [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens). It walks through caching activations, patching a layer's residual stream, and inspecting the logit lens.
 
 ## What's in the notebook
 
@@ -39,7 +39,7 @@ This visualizes how token representations evolve across layers and helps show wh
 
 ## Known limitations
 
-- **The patching demo is a no-op.** The clean and corrupted prompts are both `"My dog is a good"`, so patching a layer from one run into the other changes nothing (the patched logit equals the clean logit).
+- **The simple demo in the notebook is only illustrative.** The actual patching comparison in the repo uses two different prompts, e.g. **clean:** `"My dog is a good"` vs **corrupted:** `"My cat is a good"`, so the effect is only meaningful when the inputs differ.
 - `src/patching_sweep.py` is a draft that does this properly, with a layer × position sweep. It has **not been run**; verify its output before drawing conclusions.
 - Head attribution is a direct-effect approximation; it ignores indirect effects through later layers and the layer-norm mean-centering.
 - Single prompt, single model: treat the numbers as an illustration, not a finding.
