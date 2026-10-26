@@ -1,5 +1,7 @@
 # Activation Patching & Logit Lens on GPT-2
 
+![Activation Patching Flow](./Activation-Patching-Flow.png)
+
 A hands-on exploration of **Mechanistic Interpretability (Mech. Interp.)** using [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens). This project investigates how information flows through **GPT-2 Small** and **GPT-2 Medium** using activation patching, logit lens analysis, and direct logit attribution.
 
 The goal is to identify which layers and components contribute to specific token predictions and to understand how localized interventions affect model behavior.
