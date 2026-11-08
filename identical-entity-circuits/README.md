@@ -26,7 +26,7 @@ _Might be second John took most of the attention of model due to the surrounding
 - Is model attending to `to`?
 - Is model attending to `bag`
 
-To investigate these discoveries, I would recommend to see the following Repo which I essentially built to dig deeper into investigation of these model behaviors. Because it is obvious to explore these concepts in order to see the big picture of models.
+To investigate these discoveries, I would recommend to see the following Repo [GPT-2 Identical Circuits](https://github.com/fahdev789/Identical-name-circuit-discovery) which I essentially built to dig deeper into investigation of these model behaviors. Because it is obvious to explore these concepts in order to see the big picture of models.
 
 Please consider the repo as incomplete or unfinished work. In order to have further questions, you can send me email.
 
