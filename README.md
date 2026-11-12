@@ -2,6 +2,16 @@
 
 A small mechanistic-interpretability project built with [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens). The repo contains two complementary notebooks: one follows residual-stream information across layers, and the other tests attention-vs-MLP causal recovery at a specific layer.
 
+## 🗺️ Research Progression & Repository Map
+
+This workspace documents a four-stage investigation into how GPT-2 processes semantic features and repeated entities across layers:
+
+1. **[Baseline Patching & Logit Lens (`notebooks/` & `src/`)](./notebooks)** — Built reproducible `TransformerLens` pipelines (`gpt2-small` / `gpt2-medium`) comparing residual-stream patching, attention-vs-MLP recovery, and direct head attribution (`hook_z @ W_O`).
+2. **[LayerNorm & Logit-Difference Mechanics (`GPT2-logit-lens/`)](./GPT2-logit-lens)** — Formalised why raw logits shift counterintuitively under prompt corruption and proved why target-vs-foil logit differences cancel additive shifts but remain sensitive to multiplicative LayerNorm rescaling.
+3. **[Repeated-Entity Prototype (`identical-entity-circuits/`)](./identical-entity-circuits)** — Investigated how GPT-2 Medium processes identical names in distinct grammatical roles (*"John gave a bag to John"*), identifying the BPE whitespace tokenization confound (`"John"` vs `" John"`).
+4. **[Identical-Name Circuit Discovery (Spin-Off Repository)](https://github.com)** — Isolated repeated-name sensitivity using minimal pairs (`John -> John` vs `John -> Michael`), discovering candidate heads **L1H4**, **L6H4**, and **L7H11** and testing causal recovery with leading-space controls.
+
+
 ## Notebooks
 
 ### 1. Layer-specific residual patching and logit lens
